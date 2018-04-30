@@ -3,4 +3,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="but_reset">С</string>
+    <string name="but_10">10</string>
+    <string name="but_0">0</string>
+    <string name="but_3">3</string>
+    <string name="but_2">2</string>
+    <string name="but_1">1</string>
+    <string name="but_6">6</string>
+    <string name="but_5">5</string>
+    <string name="but_4">4</string>
+    <string name="but_9">9</string>
+    <string name="but_8">8</string>
+    <string name="but_7">7</string>
+    <string name="but_save">save</string>
 </resources>
