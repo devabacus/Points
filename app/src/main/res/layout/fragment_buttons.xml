@@ -11,13 +11,17 @@
             android:layout_height="wrap_content"
             >
 
-            <EditText
-                android:id="@+id/et_point"
+            <TextView
+                android:id="@+id/tv_point"
                 android:layout_width="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="10dp"
+                android:text="point"
+                style="@style/Text"
                 android:layout_span="2" />
 
             <Button
-                android:id="@+id/butSave"
+                android:id="@+id/but_Save"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="@string/but_save" />
@@ -71,9 +75,7 @@
 
 
         <TableRow
-            android:layout_width="0dp"
-
-            >
+            android:layout_width="0dp">
 
             <Button
                 android:id="@+id/but1"

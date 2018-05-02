@@ -6,12 +6,47 @@
     tools:context=".CategFragment">
 
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        tools:text="категория"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <RadioButton
+            android:id="@+id/rb0"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg0" />
+
+        <RadioButton
+            android:id="@+id/rb1"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg1" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg2" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg3" />
+
+        <RadioButton
+            android:id="@+id/rb4"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg4" />
+
+
+    </RadioGroup>
 
 </FrameLayout>

@@ -16,4 +16,30 @@
     <string name="but_8">8</string>
     <string name="but_7">7</string>
     <string name="but_save">save</string>
+
+    <string name="rg0">Общее</string>
+    <string name="rg1">Питание</string>
+    <string name="rg2">Спорт</string>
+    <string name="rg3">Мораль</string>
+    <string name="rg4">Работа</string>
+
+    <string name="btn_stat">stat</string>
+
+
+    <string-array name="cat">
+        <item>general</item>
+        <item>food</item>
+        <item>sport</item>
+        <item>mind</item>
+        <item>job</item>
+    </string-array>
+
+    <string-array name="cat_rus">
+        <item>Общее</item>
+        <item>Питание</item>
+        <item>Спорт</item>
+        <item>Мораль</item>
+        <item>Работа</item>
+    </string-array>
+
 </resources>

@@ -9,10 +9,21 @@
 
     <fragment
         android:id="@+id/frag_items"
-        android:name="com.example.user.points.LastItemsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:name="com.example.user.points.ListOfItems.LastItemsFragment"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="@id/frag_stat"
+        android:layout_height="250dp" />
 
+    <fragment
+        android:id="@+id/frag_stat"
+        android:name="com.example.user.points.StatFragment"
+        app:layout_constraintStart_toEndOf="@id/frag_items"
+        app:layout_constraintWidth_percent="0.3"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        />
 
     <fragment
         android:name="com.example.user.points.ButtonsFragment"
