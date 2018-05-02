@@ -1,8 +1,10 @@
 package com.example.user.points;
 
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.example.user.points.Database.PointsData;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -25,10 +28,15 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
 
     private Date date;
     private PointsViewModel pointsViewModel;
+    private PointsData lastPointsData;
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
-    String point = "";
     TextView tvPoint;
+
+    int mValue;
+    int mPoint;
+    public static int curValues = 0;
+    String point = "";
 
     public ButtonsFragment() {
         // Required empty public constructor
@@ -42,6 +50,20 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
 
         View v = inflater.inflate(R.layout.fragment_buttons, container, false);
+
+        pointsViewModel.getPointsList().observe(getActivity(), new Observer<List<PointsData>>() {
+            @Override
+            public void onChanged(@Nullable List<PointsData> pointsDataList) {
+
+                if(pointsDataList != null){
+                    if(pointsDataList.size() > 0)
+                        curValues = pointsDataList.get(pointsDataList.size()-1).getCurValues();
+                }
+                else
+                    Log.d("myLogs", "pointsDataList == null" );
+            }
+        });
+
 
         btn0 = v.findViewById(R.id.but0);
         btn1 = v.findViewById(R.id.but1);
@@ -79,7 +101,8 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         // PointsData pointsData = new PointsData();
 
-        String value = "";
+        String value = "0";
+
 
         switch (v.getId()) {
             case R.id.but0:
@@ -120,6 +143,13 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
                 point = "";
                 break;
             case R.id.but_save:
+
+                mValue = Integer.parseInt(value);
+                mValue = 0;
+                mPoint = Integer.parseInt(point);
+                curValues = curValues + mPoint;
+
+                savePointItem();
                 Toast.makeText(getContext(), "Сохранили point: " + point + ", Категория: " + CategFragment.cat_rus[CategFragment.cur_cat], Toast.LENGTH_SHORT).show();
                 value = "";
                 point = "";
@@ -133,5 +163,13 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
 //                CategFragment.cur_cat, value, 100+value
 //                ));
 
+    }
+
+    private void savePointItem() {
+
+
+        pointsViewModel.addPointsItem(new PointsData(
+                CategFragment.cur_cat, mPoint, curValues
+        ));
     }
 }

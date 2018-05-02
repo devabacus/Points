@@ -39,7 +39,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", new Locale("ru"));
         format.format(new Date());
         PointsData pointsData = pointsDataList.get(position);
-        holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
+//        holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
         holder.tvCat.setText(CategFragment.cat_rus[pointsData.getCat_index()]);
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
         holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));

@@ -29,8 +29,7 @@ public class PointsViewModel extends AndroidViewModel {
         return pointsList;
     }
 
-
-    public void addPointsItem(final PointsData pointsData) {
+      public void addPointsItem(final PointsData pointsData) {
         new addAsyncTask(appDatabase).execute(pointsData);
     }
 
