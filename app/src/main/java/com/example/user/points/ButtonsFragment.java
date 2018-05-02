@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
 
@@ -26,6 +27,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     private PointsViewModel pointsViewModel;
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
+    String point = "";
     TextView tvPoint;
 
     public ButtonsFragment() {
@@ -53,7 +55,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btn9 = v.findViewById(R.id.but9);
         btn10 = v.findViewById(R.id.but10);
         btnRes = v.findViewById(R.id.but_с);
-        btnSave = v.findViewById(R.id.but_Save);
+        btnSave = v.findViewById(R.id.but_save);
 
         tvPoint = v.findViewById(R.id.tv_point);
 
@@ -77,44 +79,56 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         // PointsData pointsData = new PointsData();
 
-        int value = 0;
+        String value = "";
 
         switch (v.getId()) {
             case R.id.but0:
-                Log.d("myLogs", "but0");
+                value = "0";
                 break;
             case R.id.but1:
-                value = 1;
+                value = "1";
                 break;
             case R.id.but2:
-                value = 2;
+                value = "2";
                 break;
             case R.id.but3:
-                value = 3;
+                value = "3";
                 break;
             case R.id.but4:
-                value = 4;
+                value = "4";
                 break;
             case R.id.but5:
-                value = 5;
+                value = "5";
                 break;
             case R.id.but6:
-                value = 6;
+                value = "6";
                 break;
             case R.id.but7:
-                value = 7;
+                value = "7";
                 break;
             case R.id.but8:
-                value = 8;
+                value = "8";
                 break;
             case R.id.but9:
-                value = 9;
+                value = "9";
                 break;
             case R.id.but10:
-                value = 10;
+                value = "10";
                 break;
+            case R.id.but_с:
+                value = "";
+                point = "";
+                break;
+            case R.id.but_save:
+                Toast.makeText(getContext(), "Сохранили point: " + point + ", Категория: " + CategFragment.cat_rus[CategFragment.cur_cat], Toast.LENGTH_SHORT).show();
+                value = "";
+                point = "";
         }
 
+        point += value;
+
+        tvPoint.setText(point);
+        //Log.d("myLogs", "cur but = " + value + ", " + "cur cat = " + CategFragment.cur_cat);
 //        pointsViewModel.addPointsItem(new PointsData(
 //                CategFragment.cur_cat, value, 100+value
 //                ));
