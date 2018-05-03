@@ -11,7 +11,6 @@
         android:id="@+id/gen_points"
         style="@style/TextBig"
         tools:text="555"
-        android:text="555"
         android:layout_width="0dp"
         android:layout_marginLeft="15dp"
         app:layout_constraintStart_toStartOf="parent"

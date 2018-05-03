@@ -22,9 +22,11 @@ import java.util.Locale;
 public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsViewHolder> {
 
     private List<PointsData> pointsDataList;
+    private View.OnLongClickListener longClickListener;
 
-    public PointsAdapter(List<PointsData> pointsDataList) {
+    PointsAdapter(List<PointsData> pointsDataList, View.OnLongClickListener longClickListener) {
         this.pointsDataList = pointsDataList;
+        this.longClickListener = longClickListener;
     }
 
     @NonNull
@@ -46,6 +48,8 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
         holder.tvCat.setText(CategFragment.cat_rus[pointsData.getCat_index()]);
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
         holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));
+        holder.itemView.setTag(pointsData);
+        holder.itemView.setOnLongClickListener(longClickListener);
     }
 
     public void addItems(List<PointsData> pointsDataList){
