@@ -21,8 +21,8 @@ public interface PointsDao {
     @Query("select * from PointsData")
     LiveData<List<PointsData>> getAllPointsItems();
 
-    @Query("select * from PointsData order by id DESC LIMIT 1")
-    List<PointsData> getLastItem();
+    @Query("select * from PointsData order by id DESC LIMIT 5")
+    LiveData<List<PointsData>> getLastItem();
 
     @Query("select * from PointsData where id = :id")
     PointsData getitembyId(long id);

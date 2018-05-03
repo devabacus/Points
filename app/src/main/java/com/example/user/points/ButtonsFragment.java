@@ -4,6 +4,7 @@ package com.example.user.points;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,13 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -29,6 +33,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     private Date date;
     private PointsViewModel pointsViewModel;
     private PointsData lastPointsData;
+    RadioButton rbMinus;
 
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
     TextView tvPoint;
@@ -55,15 +60,16 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(@Nullable List<PointsData> pointsDataList) {
 
-                if(pointsDataList != null){
-                    if(pointsDataList.size() > 0)
-                        curValues = pointsDataList.get(pointsDataList.size()-1).getCurValues();
-                }
-                else
-                    Log.d("myLogs", "pointsDataList == null" );
+                if (pointsDataList != null) {
+                    if (pointsDataList.size() > 0)
+                        curValues = pointsDataList.get(pointsDataList.size() - 1).getCurValues();
+                } else
+                    Log.d("myLogs", "pointsDataList == null");
             }
         });
 
+
+        rbMinus = v.findViewById(R.id.rbMinus);
 
         btn0 = v.findViewById(R.id.but0);
         btn1 = v.findViewById(R.id.but1);
@@ -141,35 +147,42 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
             case R.id.but_с:
                 value = "";
                 point = "";
+                tvPoint.setText("");
                 break;
             case R.id.but_save:
 
-                mValue = Integer.parseInt(value);
-                mValue = 0;
-                mPoint = Integer.parseInt(point);
-                curValues = curValues + mPoint;
+                if (tvPoint.getText().toString().equals(""))
+                    break;
+                else {
 
-                savePointItem();
-                Toast.makeText(getContext(), "Сохранили point: " + point + ", Категория: " + CategFragment.cat_rus[CategFragment.cur_cat], Toast.LENGTH_SHORT).show();
-                value = "";
-                point = "";
+                    mPoint = Integer.parseInt(point);
+                    if(rbMinus.isChecked()){
+                        mPoint = -mPoint;
+                    }
+                    curValues = curValues + mPoint;
+
+                    savePointItem();
+
+                    value = "";
+                    point = "";
+                }
         }
 
-        point += value;
+        if (!value.equals("")) {
+            point += value;
+            tvPoint.setText(point);
+        }
 
-        tvPoint.setText(point);
-        //Log.d("myLogs", "cur but = " + value + ", " + "cur cat = " + CategFragment.cur_cat);
-//        pointsViewModel.addPointsItem(new PointsData(
-//                CategFragment.cur_cat, value, 100+value
-//                ));
+//        if(!point.equals("0"))
+
 
     }
 
     private void savePointItem() {
 
-
-        pointsViewModel.addPointsItem(new PointsData(
-                CategFragment.cur_cat, mPoint, curValues
-        ));
+        if (!tvPoint.getText().toString().equals(""))
+            pointsViewModel.addPointsItem(new PointsData(
+                    new Date(), CategFragment.cur_cat, mPoint, curValues
+            ));
     }
 }

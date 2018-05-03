@@ -2,10 +2,12 @@ package com.example.user.points.ListOfItems;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.points.CategFragment;
 import com.example.user.points.Database.PointsData;
@@ -36,10 +38,11 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
 
     @Override
     public void onBindViewHolder(@NonNull PointsViewHolder holder, int position) {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", new Locale("ru"));
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM HH:mm", new Locale("ru"));
         format.format(new Date());
         PointsData pointsData = pointsDataList.get(position);
-//        holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
+        //Log.d("myLogs", String.valueOf(pointsDataList.get(position).getTimePoint()));
+        holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
         holder.tvCat.setText(CategFragment.cat_rus[pointsData.getCat_index()]);
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
         holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));

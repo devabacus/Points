@@ -46,7 +46,7 @@ public class LastItemsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(pointsAdapter);
 
-        pointsViewModel.getPointsList().observe(getActivity(), new Observer<List<PointsData>>() {
+        pointsViewModel.getPointsList1().observe(getActivity(), new Observer<List<PointsData>>() {
             @Override
             public void onChanged(@Nullable List<PointsData> pointsDataList) {
                 pointsAdapter.addItems(pointsDataList);

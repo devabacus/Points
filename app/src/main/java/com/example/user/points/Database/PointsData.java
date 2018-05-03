@@ -20,8 +20,8 @@ public class PointsData {
     private int pointValue;
     private int curValues;
 
-    public PointsData(int cat_index, int pointValue, int curValues) {
-       // this.timePoint = timePoint;
+    public PointsData(Date timePoint, int cat_index, int pointValue, int curValues) {
+        this.timePoint = timePoint;
         this.cat_index = cat_index;
         this.pointValue = pointValue;
         this.curValues = curValues;
@@ -43,7 +43,4 @@ public class PointsData {
         return timePoint;
     }
 
-    public void setTimePoint(Date timePoint) {
-        this.timePoint = timePoint;
-    }
 }

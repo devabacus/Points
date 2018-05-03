@@ -122,4 +122,37 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            >
+
+            <RadioGroup
+                android:id="@+id/rg2"
+                android:orientation="horizontal"
+                android:layout_span="2">
+
+                <RadioButton
+                    android:id="@+id/rbPlus"
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    />
+
+
+                <RadioButton
+                    android:id="@+id/rbMinus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    />
+
+
+            </RadioGroup>
+
+
+
+        </TableRow>
+
     </TableLayout>

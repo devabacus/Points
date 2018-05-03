@@ -3,6 +3,7 @@ package com.example.user.points;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class PointsViewModel extends AndroidViewModel {
 
     private final LiveData<List<PointsData>> pointsList;
+    private final LiveData<List<PointsData>> pointsList1;
 
     private AppDatabase appDatabase;
 
@@ -21,13 +23,19 @@ public class PointsViewModel extends AndroidViewModel {
     public PointsViewModel(@NonNull Application application) {
         super(application);
 
+       // this.curValues = curValues;
         appDatabase = AppDatabase.getDatabase(this.getApplication());
         pointsList = appDatabase.pointsFromDao().getAllPointsItems();
+        pointsList1 = appDatabase.pointsFromDao().getLastItem();
     }
 
     public LiveData<List<PointsData>> getPointsList() {
         return pointsList;
     }
+    public LiveData<List<PointsData>> getPointsList1() {
+        return pointsList1;
+    }
+
 
       public void addPointsItem(final PointsData pointsData) {
         new addAsyncTask(appDatabase).execute(pointsData);
@@ -35,6 +43,7 @@ public class PointsViewModel extends AndroidViewModel {
 
     public void deleteItem(PointsData pointsData) {
         new deleteAsyncTask(appDatabase).execute(pointsData);
+
     }
 
     private static class addAsyncTask extends AsyncTask<PointsData, Void, Void> {
@@ -46,7 +55,9 @@ public class PointsViewModel extends AndroidViewModel {
 
         @Override
         protected Void doInBackground(PointsData... pointsData) {
+
             db.pointsFromDao().addPoint(pointsData[0]);
+
             return null;
         }
     }
