@@ -17,12 +17,14 @@ public class PointsData {
     @TypeConverters(DateConverter.class)
     private Date timePoint;
     private int cat_index;
+    private int cat2_index;
     private int pointValue;
     private int curValues;
 
-    public PointsData(Date timePoint, int cat_index, int pointValue, int curValues) {
+    public PointsData(Date timePoint, int cat_index, int cat2_index, int pointValue, int curValues) {
         this.timePoint = timePoint;
         this.cat_index = cat_index;
+        this.cat2_index = cat2_index;
         this.pointValue = pointValue;
         this.curValues = curValues;
     }
@@ -37,6 +39,10 @@ public class PointsData {
 
     public int getCat_index() {
         return cat_index;
+    }
+
+    public int getCat2_index() {
+        return cat2_index;
     }
 
     public Date getTimePoint() {

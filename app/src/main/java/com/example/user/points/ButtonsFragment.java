@@ -34,7 +34,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     private PointsViewModel pointsViewModel;
     private PointsData lastPointsData;
     RadioButton rbMinus;
-
+    public static final String TAG = "test";
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
     TextView tvPoint;
 
@@ -181,8 +181,13 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     private void savePointItem() {
 
         if (!tvPoint.getText().toString().equals(""))
-            pointsViewModel.addPointsItem(new PointsData(
-                    new Date(), CategFragment.cur_cat, mPoint, curValues
-            ));
+            //если не мораль выбрана
+                pointsViewModel.addPointsItem(new PointsData(
+                        new Date(), CategFragment.cur_cat, CategFragment.cur_cat2, mPoint, curValues
+                ));
+        Log.d(TAG, "cur_cat = " + CategFragment.cur_cat + ", " + "cur_cat2 = " + CategFragment.cur_cat2);
+
+            }
+
     }
-}
+

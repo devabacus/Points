@@ -46,6 +46,16 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
         //Log.d("myLogs", String.valueOf(pointsDataList.get(position).getTimePoint()));
         holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
         holder.tvCat.setText(CategFragment.cat_rus[pointsData.getCat_index()]);
+        if (pointsData.getCat_index() == 3) {
+            if (pointsData.getCat2_index() == -1) {
+                Log.d("test", "getCat2_index = " + pointsData.getCat2_index());
+            } else {
+                holder.tvCat2.setText(CategFragment.cat_rus_mind[pointsData.getCat2_index()]);
+            }
+
+        } else {
+            //Log.d("test", "getCat_index = " + pointsData.getCat_index());
+        }
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
         holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));
         holder.itemView.setTag(pointsData);
@@ -67,6 +77,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
 
         TextView tvTime;
         TextView tvCat;
+        TextView tvCat2;
         TextView tvPoint;
         TextView tvCurPoints;
 
@@ -74,9 +85,9 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
             super(itemView);
             tvTime = itemView.findViewById(R.id.tv_time);
             tvCat = itemView.findViewById(R.id.tv_cat_name);
+            tvCat2 = itemView.findViewById(R.id.tv_cat2_name);
             tvPoint = itemView.findViewById(R.id.tv_point);
             tvCurPoints = itemView.findViewById(R.id.tv_cur_points);
-
         }
     }
 }

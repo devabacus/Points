@@ -23,7 +23,17 @@
     <string name="rg3">Мораль</string>
     <string name="rg4">Работа</string>
 
+    <string name="rg3_1">Уверен</string>
+    <string name="rg3_2">Обстоят</string>
+    <string name="rg3_3">Воля</string>
+    <string name="rg3_4">Работа</string>
+    <string name="rg3_5">Окруж</string>
+    <string name="rg3_6">Случ</string>
+
+
+
     <string name="btn_stat">stat</string>
+    <string name="back">назад</string>
 
 
     <string-array name="cat">
@@ -41,5 +51,17 @@
         <item>Мораль</item>
         <item>Работа</item>
     </string-array>
+
+    <string-array name="cat_rus_mind">
+        <item>Уверен</item>
+        <item>Обстоят</item>
+        <item>Воля</item>
+        <item>Работа</item>
+        <item>Окруж</item>
+        <item>Случ</item>
+    </string-array>
+
+
+
 
 </resources>
