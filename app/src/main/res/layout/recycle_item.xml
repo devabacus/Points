@@ -31,6 +31,7 @@
     <TextView
         android:id="@+id/tv_cat2_name"
         style="@style/Text.item"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/tv_time"

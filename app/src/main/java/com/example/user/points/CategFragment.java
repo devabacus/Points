@@ -55,11 +55,11 @@ public class CategFragment extends Fragment {
                 RadioButton rb = Objects.requireNonNull(getView()).findViewById(rbId);
                 cur_cat = radioGroup.indexOfChild(rb);
 
-                if (cur_cat == 3) {
-                    radioGroup.setVisibility(View.GONE);
-                    radioGroup2.setVisibility(View.VISIBLE);
-                    btnBack.setVisibility(View.VISIBLE);
-                }
+//                if (cur_cat == 3) {
+//                    radioGroup.setVisibility(View.GONE);
+//                    radioGroup2.setVisibility(View.VISIBLE);
+//                    btnBack.setVisibility(View.VISIBLE);
+//                }
             }
         });
 
