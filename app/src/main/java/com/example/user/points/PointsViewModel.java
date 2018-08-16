@@ -46,6 +46,12 @@ public class PointsViewModel extends AndroidViewModel {
 
     }
 
+    public void deleteAll() {
+        new deleteAllAsyncTask(appDatabase);
+        AppDatabase db;
+    }
+
+
     private static class addAsyncTask extends AsyncTask<PointsData, Void, Void> {
         private AppDatabase db;
 
@@ -72,6 +78,21 @@ public class PointsViewModel extends AndroidViewModel {
         @Override
         protected Void doInBackground(PointsData... pointsData) {
             db.pointsFromDao().deletePoints(pointsData[0]);
+            return null;
+        }
+    }
+
+
+    private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AppDatabase db;
+
+        deleteAllAsyncTask(AppDatabase appDatabase) {
+            this.db = appDatabase;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            db.pointsFromDao().deleteAll();
             return null;
         }
     }

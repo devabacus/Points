@@ -27,6 +27,9 @@ public interface PointsDao {
     @Query("select * from PointsData where id = :id")
     PointsData getitembyId(long id);
 
+    @Query("delete from PointsData")
+    public void deleteAll();
+
     @Delete
     void deletePoints(PointsData pointsData);
 

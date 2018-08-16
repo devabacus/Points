@@ -55,7 +55,7 @@ public class CategFragment extends Fragment {
                 RadioButton rb = Objects.requireNonNull(getView()).findViewById(rbId);
                 cur_cat = radioGroup.indexOfChild(rb);
 
-                if (checkedId == R.id.rb3) {
+                if (cur_cat == 3) {
                     radioGroup.setVisibility(View.GONE);
                     radioGroup2.setVisibility(View.VISIBLE);
                     btnBack.setVisibility(View.VISIBLE);
@@ -72,6 +72,7 @@ public class CategFragment extends Fragment {
                 Log.d(TAG, "cur_cat2 = " + String.valueOf(cur_cat2));
             }
         });
+
 
 
 

@@ -61,6 +61,9 @@ public class LastItemsFragment extends Fragment implements View.OnLongClickListe
     public boolean onLongClick(View v) {
         PointsData pointsData = (PointsData) v.getTag();
         pointsViewModel.deleteItem(pointsData);
+        //pointsViewModel.deleteAll();
         return true;
     }
+
+
 }

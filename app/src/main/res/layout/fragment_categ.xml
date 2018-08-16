@@ -104,6 +104,13 @@
             android:layout_height="wrap_content"
             android:text="@string/rg3_6" />
 
+        <RadioButton
+            android:id="@+id/rb3_7"
+            style="@style/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rg3_7" />
+
 
 
     </RadioGroup>

@@ -10,6 +10,7 @@
     <TextView
         android:id="@+id/gen_points"
         style="@style/TextBig"
+        android:textSize="40sp"
         tools:text="555"
         android:layout_width="0dp"
         android:layout_marginLeft="15dp"

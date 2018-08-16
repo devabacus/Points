@@ -41,8 +41,12 @@ public class StatFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<PointsData> pointsDataList) {
                 if(pointsDataList != null){
-                    if(pointsDataList.size() > 0)
-                        tvStat.setText(String.valueOf(pointsDataList.get(pointsDataList.size()-1).getCurValues()));
+                    if (pointsDataList.size() > 0) {
+                        tvStat.setText(String.valueOf(pointsDataList.get(pointsDataList.size() - 1).getCurValues()));
+                    } else {
+                        ButtonsFragment.curValues = 0;
+                        tvStat.setText("0");
+                    }
                 }
                 else
                     Log.d("myLogs", "pointsDataList == null" );

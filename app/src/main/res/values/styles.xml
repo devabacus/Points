@@ -23,6 +23,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="TextBigBtn">
+        <item name="android:textSize">45sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
     <style name="radio_button">
         <item name="android:textSize">20sp</item>
         <item name="android:layout_marginBottom">20dp</item>

@@ -23,17 +23,27 @@
     <string name="rg3">Мораль</string>
     <string name="rg4">Работа</string>
 
-    <string name="rg3_1">Уверен</string>
+    <string name="rg3_1">Увер</string>
     <string name="rg3_2">Обстоят</string>
     <string name="rg3_3">Воля</string>
     <string name="rg3_4">Работа</string>
     <string name="rg3_5">Окруж</string>
     <string name="rg3_6">Случ</string>
+    <string name="rg3_7">Спок</string>
 
 
+    <string name="rg2_1">Бег</string>
+    <string name="rg2_2">Зарядка</string>
+    <string name="rg2_3">Гимнастика</string>
+    <string name="rg2_4">Велосипед</string>
+    <string name="rg2_5">Силовые</string>
+    <string name="rg2_6">Йога</string>
+    <string name="rg2_7">Холод</string>
+    <string name="rg2_8">Питание</string>
 
     <string name="btn_stat">stat</string>
     <string name="back">назад</string>
+    <string name="zero">0</string>
 
 
     <string-array name="cat">
@@ -59,7 +69,20 @@
         <item>Работа</item>
         <item>Окруж</item>
         <item>Случ</item>
+        <item>Спок</item>
     </string-array>
+
+    <string-array name="cat_rus_fit">
+        <item>Бег</item>
+        <item>Зарядка</item>
+        <item>Гимнастика</item>
+        <item>Велосипед</item>
+        <item>Силовые</item>
+        <item>Йога</item>
+        <item>Холод</item>
+        <item>Питание</item>
+    </string-array>
+
 
 
 

@@ -6,13 +6,16 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +39,12 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     RadioButton rbMinus;
     public static final String TAG = "test";
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
+    Button btnInc5,btnInc10,btnInc20,btnInc30;
+    CheckBox cbEasy;
     TextView tvPoint;
+    TableLayout tabBtns;
+    ConstraintLayout constEasyMode;
+
 
     int mValue;
     int mPoint;
@@ -54,6 +62,8 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
 
+
+
         View v = inflater.inflate(R.layout.fragment_buttons, container, false);
 
         pointsViewModel.getPointsList().observe(getActivity(), new Observer<List<PointsData>>() {
@@ -69,7 +79,17 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         });
 
 
+        constEasyMode = v.findViewById(R.id.const_easy_mode);
+        tabBtns = v.findViewById(R.id.table_btns);
         rbMinus = v.findViewById(R.id.rbMinus);
+        cbEasy = v.findViewById(R.id.cb_easy);
+
+        btnInc5 = v.findViewById(R.id.btn_inc_5);
+        btnInc10 = v.findViewById(R.id.btn_inc_10);
+        btnInc20 = v.findViewById(R.id.btn_inc_20);
+        btnInc30 = v.findViewById(R.id.btn_inc_30);
+
+
 
         btn0 = v.findViewById(R.id.but0);
         btn1 = v.findViewById(R.id.but1);
@@ -84,8 +104,22 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btn10 = v.findViewById(R.id.but10);
         btnRes = v.findViewById(R.id.but_с);
         btnSave = v.findViewById(R.id.but_save);
-
         tvPoint = v.findViewById(R.id.tv_point);
+
+        cbEasy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbEasy.isChecked()) {
+                    tabBtns.setVisibility(View.GONE);
+                    constEasyMode.setVisibility(View.VISIBLE);
+
+                } else {
+                    tabBtns.setVisibility(View.VISIBLE);
+                    constEasyMode.setVisibility(View.GONE);
+
+                }
+            }
+        });
 
         btn0.setOnClickListener(this);
         btn1.setOnClickListener(this);
@@ -100,6 +134,12 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btn10.setOnClickListener(this);
         btnRes.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+
+        btnInc5.setOnClickListener(this);
+        btnInc10.setOnClickListener(this);
+        btnInc20.setOnClickListener(this);
+        btnInc30.setOnClickListener(this);
+
         return v;
     }
 
@@ -159,16 +199,35 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
                     if(rbMinus.isChecked()){
                         mPoint = -mPoint;
                     }
-                    curValues = curValues + mPoint;
+
 
                     savePointItem();
 
                     value = "";
                     point = "";
                 }
+                break;
+
+            case R.id.btn_inc_5:
+                mPoint = 5;
+                savePointItem();
+                break;
+
+            case R.id.btn_inc_10:
+                mPoint = 10;
+                savePointItem();
+                break;
+            case R.id.btn_inc_20:
+                mPoint = 20;
+                savePointItem();
+                break;
+            case R.id.btn_inc_30:
+                mPoint = 30;
+                savePointItem();
+                break;
         }
 
-        if (!value.equals("")) {
+        if (!value.equals("") && !cbEasy.isChecked()) {
             point += value;
             tvPoint.setText(point);
         }
@@ -179,8 +238,8 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void savePointItem() {
-
-        if (!tvPoint.getText().toString().equals(""))
+        curValues = curValues + mPoint;
+        if (!tvPoint.getText().toString().equals("") || cbEasy.isChecked())
             //если не мораль выбрана
                 pointsViewModel.addPointsItem(new PointsData(
                         new Date(), CategFragment.cur_cat, CategFragment.cur_cat2, mPoint, curValues
