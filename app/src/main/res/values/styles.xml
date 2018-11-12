@@ -24,7 +24,7 @@
     </style>
 
     <style name="TextBigBtn">
-        <item name="android:textSize">45sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:gravity">center</item>
     </style>

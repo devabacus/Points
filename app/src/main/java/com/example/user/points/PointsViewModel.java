@@ -47,8 +47,8 @@ public class PointsViewModel extends AndroidViewModel {
     }
 
     public void deleteAll() {
-        new deleteAllAsyncTask(appDatabase);
-        AppDatabase db;
+        new deleteAllAsyncTask(appDatabase).execute();
+        //AppDatabase db;
     }
 
 
