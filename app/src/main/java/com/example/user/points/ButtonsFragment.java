@@ -39,7 +39,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     RadioButton rbMinus;
     public static final String TAG = "test";
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
-    Button btnInc5,btnInc10,btnInc20,btnInc30,btnInc50,btnInc100,btnDec5,btnDec10,btnDec20,btnDec30,btnDec50,btnDec100;
+    Button btnInc5,btnInc10,btnInc20,btnInc30,btnInc50,btnInc100;
     CheckBox cbEasy;
     TextView tvPoint;
     TableLayout tabBtns;
@@ -90,13 +90,6 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btnInc30 = v.findViewById(R.id.btn_inc_30);
         btnInc50 = v.findViewById(R.id.btn_inc_50);
         btnInc100 = v.findViewById(R.id.btn_inc_100);
-        btnDec5 = v.findViewById(R.id.btn_dec_5);
-        btnDec10 = v.findViewById(R.id.btn_dec_10);
-        btnDec20 = v.findViewById(R.id.btn_dec_20);
-        btnDec30 = v.findViewById(R.id.btn_dec_30);
-        btnDec50 = v.findViewById(R.id.btn_dec_50);
-        btnDec100 = v.findViewById(R.id.btn_dec_100);
-
 
 
         btn0 = v.findViewById(R.id.but0);
@@ -147,14 +140,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btnInc10.setOnClickListener(this);
         btnInc20.setOnClickListener(this);
         btnInc30.setOnClickListener(this);
-        btnInc50.setOnClickListener(this);
-        btnInc100.setOnClickListener(this);
-        btnDec5.setOnClickListener(this);
-        btnDec10.setOnClickListener(this);
-        btnDec20.setOnClickListener(this);
-        btnDec30.setOnClickListener(this);
-        btnDec50.setOnClickListener(this);
-        btnDec100.setOnClickListener(this);
+
 
         return v;
     }
@@ -250,31 +236,6 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
                 savePointItem();
                 break;
 
-            case R.id.btn_dec_5:
-                mPoint = -5;
-                savePointItem();
-                break;
-
-            case R.id.btn_dec_10:
-                mPoint = -10;
-                savePointItem();
-                break;
-            case R.id.btn_dec_20:
-                mPoint = -20;
-                savePointItem();
-                break;
-            case R.id.btn_dec_30:
-                mPoint = -30;
-                savePointItem();
-                break;
-            case R.id.btn_dec_50:
-                mPoint = -50;
-                savePointItem();
-                break;
-            case R.id.btn_dec_100:
-                mPoint = -100;
-                savePointItem();
-                break;
         }
 
         if (!value.equals("") && !cbEasy.isChecked()) {

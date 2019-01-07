@@ -191,18 +191,7 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_5"
-            android:text="-5"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
 
@@ -212,19 +201,7 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_5"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_10"
-            android:text="-10"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_5"
-
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
@@ -233,19 +210,7 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_10"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_20"
-            android:text="-20"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_10"
-
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
@@ -254,21 +219,8 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_20"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_30"
-            android:text="-30"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_20"
-
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
 
         <Button
             android:id="@+id/btn_inc_50"
@@ -276,19 +228,7 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_30"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_50"
-            android:text="-50"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_30"
-
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
@@ -297,26 +237,8 @@
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_50"
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_dec_100"
-            android:text="-100"
-            style="@style/TextBigBtn"
-            app:layout_constraintStart_toEndOf="@id/btn_inc_5"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_50"
-
-            android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.5"
-            android:layout_height="wrap_content" />
-
-
-
-
-
-
 
 
     </android.support.constraint.ConstraintLayout>
