@@ -100,15 +100,14 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                     Log.d("myLogs", "pointsDataList == null" );
             }
         });
+
+
         return v;
     }
 
     @Override
     public boolean onLongClick(View v) {
-        //create_alert_dialog(Confirm_data.DELETE_ALL);
-
-        //ConfirmAlertDialog confirmAlertDialog = new ConfirmAlertDialog();
-        //confirmAlertDialog.show(getSupportFragmentManager(), "custom");
+        create_alert_dialog(Confirm_data.DELETE_ALL);
         return false;
     }
 }

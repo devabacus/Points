@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         if (!longPress) {
             if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
                 volButNum++;
-                ConfirmAlertDialog confirmAlertDialog = new ConfirmAlertDialog();
-                confirmAlertDialog.show(getFragmentManager(), "ConfirmAlertDialog");
 
             } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
                 volButNum--;
