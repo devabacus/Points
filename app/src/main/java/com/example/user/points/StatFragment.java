@@ -1,8 +1,12 @@
 package com.example.user.points;
 
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
+import com.example.user.points.Dialogs.ConfirmAlertDialog;
 import com.example.user.points.R;
 
 import java.util.List;
@@ -26,21 +31,58 @@ import java.util.Objects;
  */
 public class StatFragment extends Fragment implements View.OnLongClickListener {
 
+    public static final String TAG = "test";
     PointsViewModel pointsViewModel;
     Button btnStat;
+
+
+
+
+    enum Confirm_data{
+        DELETE_ITEM,
+        DELETE_ALL
+    }
+
+    Confirm_data confirm_data;
 
     public StatFragment() {
         // Required empty public constructor
     }
+
+    void create_alert_dialog(Confirm_data conf_data){
+
+        String dialogTitle = "";
+        if (conf_data == Confirm_data.DELETE_ITEM) {
+            dialogTitle = "Delete this item?";
+        } else if (conf_data == Confirm_data.DELETE_ALL) {
+            dialogTitle = "DELETE ALL ITEMS?";
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(dialogTitle)
+                .setCancelable(true)
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    if (conf_data == Confirm_data.DELETE_ALL) {
+                        //pointsViewModel.deleteAll();
+                    }
+                })
+                .setNegativeButton("No", (dialog, which) ->{
+                    Toast.makeText(getContext(), "Не удаляем", Toast.LENGTH_SHORT).show();
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stat, container, false);
 
+
+
         btnStat = v.findViewById(R.id.btn_stat);
         btnStat.setOnLongClickListener(this);
-
         final TextView tvStat = v.findViewById(R.id.gen_points);
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
         pointsViewModel.getPointsList().observe(getActivity(), new Observer<List<PointsData>>() {
@@ -63,8 +105,10 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
 
     @Override
     public boolean onLongClick(View v) {
-        pointsViewModel.deleteAll();
-        Toast.makeText(getContext(), "clear all", Toast.LENGTH_SHORT).show();
+        //create_alert_dialog(Confirm_data.DELETE_ALL);
+
+        //ConfirmAlertDialog confirmAlertDialog = new ConfirmAlertDialog();
+        //confirmAlertDialog.show(getSupportFragmentManager(), "custom");
         return false;
     }
 }

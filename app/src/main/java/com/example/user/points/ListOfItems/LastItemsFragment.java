@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LastItemsFragment extends Fragment implements View.OnLongClickListener{
 
     private PointsViewModel pointsViewModel;

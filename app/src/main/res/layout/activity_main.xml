@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/frag_items"
         android:name="com.example.user.points.ListOfItems.LastItemsFragment"
-        android:layout_width="280dp"
+        android:layout_width="0dp"
         android:layout_height="220dp"
         app:layout_constraintRight_toRightOf="@id/frag_stat"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/frag_stat"
         android:name="com.example.user.points.StatFragment"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="140dp"
         app:layout_constraintStart_toEndOf="@id/frag_items"
         app:layout_constraintWidth_percent="0.2" />
@@ -44,7 +44,12 @@
         app:layout_constraintTop_toBottomOf="@id/frag_items"
         app:layout_constraintWidth_percent="0.4" />
 
+    <FrameLayout
+        android:id="@+id/frag_volbut"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
 
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

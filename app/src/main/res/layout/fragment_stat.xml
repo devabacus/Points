@@ -10,17 +10,17 @@
     <TextView
         android:id="@+id/gen_points"
         style="@style/TextBig"
-        android:textSize="35sp"
+        android:textSize="20sp"
         tools:text="555"
         android:layout_width="0dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_height="wrap_content"
         />
 
     <Button
         android:id="@+id/btn_stat"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"

@@ -17,71 +17,75 @@
     <string name="but_7">7</string>
     <string name="but_save">save</string>
 
-    <string name="rg0">Общее</string>
-    <string name="rg1">Питание</string>
-    <string name="rg2">Спорт</string>
-    <string name="rg3">Мораль</string>
-    <string name="rg4">Работа</string>
+    <string name="rg0">General</string>
+    <string name="rg1">Meal</string>
+    <string name="rg2">Fitness</string>
+    <string name="rg3">Mind</string>
+    <string name="rg4">Job</string>
+    <string name="rg5">Learn</string>
+    <string name="rg6">Homework</string>
 
-    <string name="rg3_1">Увер</string>
-    <string name="rg3_2">Обстоят</string>
-    <string name="rg3_3">Воля</string>
-    <string name="rg3_4">Работа</string>
-    <string name="rg3_5">Окруж</string>
-    <string name="rg3_6">Случ</string>
-    <string name="rg3_7">Спок</string>
+    <string-array name="cat">
+        <item>General</item>
+        <item>Meal</item>
+        <item>Fitness</item>
+        <item>Mind</item>
+        <item>Job</item>
+        <item>Learn</item>
+        <item>Homework</item>
+    </string-array>
 
 
-    <string name="rg2_1">Бег</string>
-    <string name="rg2_2">Зарядка</string>
-    <string name="rg2_3">Гимнастика</string>
-    <string name="rg2_4">Велосипед</string>
-    <string name="rg2_5">Силовые</string>
-    <string name="rg2_6">Йога</string>
-    <string name="rg2_7">Холод</string>
-    <string name="rg2_8">Питание</string>
+    <string name="rg2_1">fit</string>
+    <string name="rg2_2">running</string>
+    <string name="rg2_3">morn fit</string>
+    <string name="rg2_4">work-out</string>
+    <string name="rg2_5">cycle</string>
+    <string name="rg2_6">gym</string>
+    <string name="rg2_7">yoga</string>
+    <string name="rg2_8">cold</string>
+
+    <string-array name="cat_fit">
+        <item>fit</item>
+        <item>running</item>
+        <item>morn fit</item>
+        <item>work-out</item>
+        <item>cycle</item>
+        <item>gym</item>
+        <item>yoga</item>
+        <item>cold</item>
+    </string-array>
+
+    <string name="rg3_1">General</string>
+    <string name="rg3_2">Confidence</string>
+    <string name="rg3_3">Circs</string>
+    <string name="rg3_4">Will</string>
+    <string name="rg3_5">Job</string>
+    <string name="rg3_6">Around</string>
+    <string name="rg3_7">Accident</string>
+    <string name="rg3_8">Calm</string>
+
+    <string-array name="cat_mind">
+        <item>General</item>
+        <item>Confidence</item>
+        <item>Circs</item>
+        <item>Will</item>
+        <item>Job</item>
+        <item>Around</item>
+        <item>Accident</item>
+        <item>Calm</item>
+    </string-array>
+
+
+    <string name="rg5_1">General</string>
+    <string name="rg5_2">Anki learn</string>
+    <string name="rg5_3">Anki add</string>
+    <string name="rg5_4">Tutorial</string>
+
 
     <string name="btn_stat">stat</string>
     <string name="back">назад</string>
     <string name="zero">0</string>
-
-
-    <string-array name="cat">
-        <item>general</item>
-        <item>food</item>
-        <item>sport</item>
-        <item>mind</item>
-        <item>job</item>
-    </string-array>
-
-    <string-array name="cat_rus">
-        <item>Общее</item>
-        <item>Питание</item>
-        <item>Спорт</item>
-        <item>Мораль</item>
-        <item>Работа</item>
-    </string-array>
-
-    <string-array name="cat_rus_mind">
-        <item>Уверен</item>
-        <item>Обстоят</item>
-        <item>Воля</item>
-        <item>Работа</item>
-        <item>Окруж</item>
-        <item>Случ</item>
-        <item>Спок</item>
-    </string-array>
-
-    <string-array name="cat_rus_fit">
-        <item>Бег</item>
-        <item>Зарядка</item>
-        <item>Гимнастика</item>
-        <item>Велосипед</item>
-        <item>Силовые</item>
-        <item>Йога</item>
-        <item>Холод</item>
-        <item>Питание</item>
-    </string-array>
 
 
 </resources>

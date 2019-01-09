@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_marginTop="20dp"
-    android:layout_height="50dp">
+    android:layout_height="20dp">
 
     <TextView
         android:id="@+id/tv_time"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintWidth_percent="0.3"
         tools:text="10:08"
 
         />
@@ -25,15 +25,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/tv_time"
-        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintWidth_percent="0.3"
         tools:text="category name" />
 
     <TextView
         android:id="@+id/tv_cat2_name"
         style="@style/Text.item"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@id/tv_time"
         app:layout_constraintTop_toBottomOf="@id/tv_cat_name"
         app:layout_constraintWidth_percent="0.4"

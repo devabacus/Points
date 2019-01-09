@@ -4,7 +4,6 @@ package com.example.user.points;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -20,11 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
+import com.example.user.points.FastAccess.VolButViewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 
@@ -35,8 +33,9 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
 
     private Date date;
     private PointsViewModel pointsViewModel;
+    VolButViewModel volButViewModel;
     private PointsData lastPointsData;
-    RadioButton rbMinus;
+    RadioButton rbMinus,rbPlus;
     public static final String TAG = "test";
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
     Button btnInc5,btnInc10,btnInc20,btnInc30,btnInc50,btnInc100;
@@ -44,6 +43,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     TextView tvPoint;
     TableLayout tabBtns;
     ConstraintLayout constEasyMode;
+    StateViewModel stateViewModel;
 
 
     int mValue;
@@ -55,13 +55,26 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
+    public void easy_mode(boolean state) {
+        if (state) {
+            tabBtns.setVisibility(View.GONE);
+            constEasyMode.setVisibility(View.VISIBLE);
+            stateViewModel.setCbEasyState(true);
+
+        } else {
+            tabBtns.setVisibility(View.VISIBLE);
+            constEasyMode.setVisibility(View.GONE);
+            stateViewModel.setCbEasyState(false);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
-
+        stateViewModel = ViewModelProviders.of(getActivity()).get(StateViewModel.class);
+        volButViewModel = ViewModelProviders.of(getActivity()).get(VolButViewModel.class);
 
 
         View v = inflater.inflate(R.layout.fragment_buttons, container, false);
@@ -78,10 +91,14 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        volButViewModel.getmNumbValue().observe(getActivity(), num->{
+           // Toast.makeText(getContext(), "volNum = " + num, Toast.LENGTH_SHORT).show();
+        });
 
         constEasyMode = v.findViewById(R.id.const_easy_mode);
         tabBtns = v.findViewById(R.id.table_btns);
         rbMinus = v.findViewById(R.id.rbMinus);
+        rbPlus = v.findViewById(R.id.rbPlus);
         cbEasy = v.findViewById(R.id.cb_easy);
 
         btnInc5 = v.findViewById(R.id.btn_inc_5);
@@ -106,18 +123,16 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btnRes = v.findViewById(R.id.but_с);
         btnSave = v.findViewById(R.id.but_save);
         tvPoint = v.findViewById(R.id.tv_point);
+        tvPoint.setText("");
 
         cbEasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cbEasy.isChecked()) {
-                    tabBtns.setVisibility(View.GONE);
-                    constEasyMode.setVisibility(View.VISIBLE);
-
+                    easy_mode(true);
                 } else {
-                    tabBtns.setVisibility(View.VISIBLE);
-                    constEasyMode.setVisibility(View.GONE);
-
+                    easy_mode(false);
+                    rbPlus.setChecked(true);
                 }
             }
         });
@@ -140,6 +155,8 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
         btnInc10.setOnClickListener(this);
         btnInc20.setOnClickListener(this);
         btnInc30.setOnClickListener(this);
+        btnInc50.setOnClickListener(this);
+        btnInc100.setOnClickListener(this);
 
 
         return v;
@@ -149,12 +166,14 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         // PointsData pointsData = new PointsData();
 
-        String value = "0";
+        String value = "";
 
 
         switch (v.getId()) {
             case R.id.but0:
-                value = "0";
+                if (!tvPoint.getText().toString().equals("")) {
+                    value = "0";
+                }
                 break;
             case R.id.but1:
                 value = "1";
@@ -192,21 +211,23 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
                 tvPoint.setText("");
                 break;
             case R.id.but_save:
-
+                //if there's no any picked number break
                 if (tvPoint.getText().toString().equals(""))
                     break;
                 else {
-
+                    //convert tvPoint field to number
                     mPoint = Integer.parseInt(point);
+
                     if(rbMinus.isChecked()){
                         mPoint = -mPoint;
                     }
 
-
                     savePointItem();
-
+                    cbEasy.setChecked(true);
+                    easy_mode(true);
                     value = "";
                     point = "";
+                    tvPoint.setText("");
                 }
                 break;
 
@@ -242,20 +263,17 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
             point += value;
             tvPoint.setText(point);
         }
-
-//        if(!point.equals("0"))
-
-
     }
 
     private void savePointItem() {
+        //additing current amount of points with new added
         curValues = curValues + mPoint;
         if (!tvPoint.getText().toString().equals("") || cbEasy.isChecked())
             //если не мораль выбрана
                 pointsViewModel.addPointsItem(new PointsData(
-                        new Date(), CategFragment.cur_cat, CategFragment.cur_cat2, mPoint, curValues
+                        new Date(), CategFragment.cur_cat, CategFragment.cur_cat3, mPoint, curValues
                 ));
-        Log.d(TAG, "cur_cat = " + CategFragment.cur_cat + ", " + "cur_cat2 = " + CategFragment.cur_cat2);
+        Log.d(TAG, "cur_cat = " + CategFragment.cur_cat + ", " + "cur_cat3 = " + CategFragment.cur_cat3);
 
             }
 

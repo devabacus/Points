@@ -29,7 +29,7 @@ public class PointsViewModel extends AndroidViewModel {
         pointsList1 = appDatabase.pointsFromDao().getLastItem();
     }
 
-    public LiveData<List<PointsData>> getPointsList() {
+    LiveData<List<PointsData>> getPointsList() {
         return pointsList;
     }
     public LiveData<List<PointsData>> getPointsList1() {
@@ -37,7 +37,7 @@ public class PointsViewModel extends AndroidViewModel {
     }
 
 
-      public void addPointsItem(final PointsData pointsData) {
+    public void addPointsItem(final PointsData pointsData) {
         new addAsyncTask(appDatabase).execute(pointsData);
     }
 
@@ -46,7 +46,7 @@ public class PointsViewModel extends AndroidViewModel {
 
     }
 
-    public void deleteAll() {
+    void deleteAll() {
         new deleteAllAsyncTask(appDatabase).execute();
         //AppDatabase db;
     }

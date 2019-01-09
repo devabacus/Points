@@ -45,12 +45,12 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
         PointsData pointsData = pointsDataList.get(position);
         //Log.d("myLogs", String.valueOf(pointsDataList.get(position).getTimePoint()));
         holder.tvTime.setText(String.valueOf(format.format(pointsData.getTimePoint())));
-        holder.tvCat.setText(CategFragment.cat_rus[pointsData.getCat_index()]);
+        holder.tvCat.setText(CategFragment.cat[pointsData.getCat_index()]);
         if (pointsData.getCat_index() == 3) {
             if (pointsData.getCat2_index() == -1) {
                 Log.d("test", "getCat2_index = " + pointsData.getCat2_index());
             } else {
-                holder.tvCat2.setText(CategFragment.cat_rus_mind[pointsData.getCat2_index()]);
+                holder.tvCat2.setText(CategFragment.cat_mind[pointsData.getCat2_index()]);
             }
 
         } else {
