@@ -31,11 +31,12 @@ import java.util.Objects;
  */
 public class StatFragment extends Fragment implements View.OnLongClickListener {
 
-    public static final String TAG = "test";
+    public static final String TAG = "test_point";
     PointsViewModel pointsViewModel;
     Button btnStat;
-
-
+    public static Integer curStatValue = 0;
+    public static Integer newPointValue = 0;
+    Integer lastListSize = 0;
 
 
     enum Confirm_data{
@@ -73,7 +74,6 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
         alertDialog.show();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,20 +85,32 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
         btnStat.setOnLongClickListener(this);
         final TextView tvStat = v.findViewById(R.id.gen_points);
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
-        pointsViewModel.getPointsList().observe(getActivity(), new Observer<List<PointsData>>() {
-            @Override
-            public void onChanged(@Nullable List<PointsData> pointsDataList) {
-                if(pointsDataList != null){
-                    if (pointsDataList.size() > 0) {
-                        tvStat.setText(String.valueOf(pointsDataList.get(pointsDataList.size() - 1).getCurValues()));
-                    } else {
-                        ButtonsFragment.curValues = 0;
-                        tvStat.setText("0");
+        pointsViewModel.getPointsList().observe(getActivity(), pointsDataList -> {
+            if(pointsDataList != null){
+                if (pointsDataList.size() > 0) {
+                    tvStat.setText(String.valueOf(pointsDataList.get(pointsDataList.size() - 1).getCurValues()));
+                    //lastListSize = pointsDataList.size();
+                    //if add item into the database
+                    Log.d(TAG, "pointsDataList.size() = " + pointsDataList.size());
+                    Log.d(TAG, "lastListSize = " + lastListSize);
+                    if (pointsDataList.size() >= lastListSize) {
+                        Log.d(TAG, "pointsDataList.size() >= lastListSize");
+                       curStatValue =  pointsDataList.get(pointsDataList.size() - 1).getCurValues();
                     }
+                    // if remove item from the database
+                    else {
+                        Log.d(TAG, "less");
+                       curStatValue = curStatValue - newPointValue;
+                    }
+                    lastListSize = pointsDataList.size();
+                    tvStat.setText(String.valueOf(curStatValue));
+                } else {
+                    ButtonsFragment.curValues = 0;
+                    tvStat.setText("0");
                 }
-                else
-                    Log.d("myLogs", "pointsDataList == null" );
             }
+            else
+                Log.d("myLogs", "pointsDataList == null" );
         });
 
 

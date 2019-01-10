@@ -53,8 +53,6 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
                 holder.tvCat2.setText(CategFragment.cat_mind[pointsData.getCat2_index()]);
             }
 
-        } else {
-            //Log.d("test", "getCat_index = " + pointsData.getCat_index());
         }
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
         holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));
@@ -62,7 +60,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
         holder.itemView.setOnLongClickListener(longClickListener);
     }
 
-    public void addItems(List<PointsData> pointsDataList){
+    void addItems(List<PointsData> pointsDataList){
         this.pointsDataList = pointsDataList;
         notifyDataSetChanged();
     }

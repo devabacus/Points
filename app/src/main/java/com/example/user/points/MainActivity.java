@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             vibrator.vibrate(num);
         }
-
     }
 
 }

@@ -67,7 +67,6 @@ public class PointsViewModel extends AndroidViewModel {
             return null;
         }
     }
-
     private static class deleteAsyncTask extends AsyncTask<PointsData, Void, Void> {
         private AppDatabase db;
 
@@ -81,8 +80,6 @@ public class PointsViewModel extends AndroidViewModel {
             return null;
         }
     }
-
-
     private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
         private AppDatabase db;
 

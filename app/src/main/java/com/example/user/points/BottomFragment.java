@@ -13,6 +13,10 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.example.user.points.ButtonsFragment.TAG;
@@ -26,6 +30,7 @@ public class BottomFragment extends Fragment {
     private Chronometer chronometer;
     private boolean mRunning;
     private long elapsedTime = 0;
+    TextView tvStartTime, tvEndTime, tvCategory;
 
     public BottomFragment() {
         // Required empty public constructor
@@ -38,34 +43,23 @@ public class BottomFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_bottom, container, false);
         chronometer = v.findViewById(R.id.chronometer);
+        tvStartTime = v.findViewById(R.id.tv_time_st);
+        tvEndTime = v.findViewById(R.id.tv_time_end);
+        tvCategory = v.findViewById(R.id.tv_category);
 
         chronometer.setOnClickListener(v1 -> {
+            setStartData();
             if (!mRunning) {
-                //SystemClock.elapsedRealtime() is current elapsed time - constantly change
-                //chronometer.getBase() is time when the chronometer.start() is called. So every time we call this function we change getBase
-                //if we don't setbase start function as default start to count from getBase value (first time when the app is started)
-                //CHRONOMETER ALWAYS SHOW DIFFERENCE BETWEEN SystemClock.elapsedRealtime() AND GETBASE мы как бы его наебываем и перед каждым продолж. стартом
-                //мы отнимаем от текущего времени, то которое сохранили (которое на хронометре отображается) и говорим, и устанавливаем это как базовое время
-                //соответственно хронометер и будет отображать сохраненное время и соответственно начнет считать с него же
-                Log.d(TAG, "---------------------start-------------------");
-                Log.d(TAG, "elapsedTime = " + elapsedTime/1000);
-                Log.d(TAG, "SystemClock.elapsedRealtime() = " + SystemClock.elapsedRealtime()/1000);
-                Log.d(TAG, "chronometer.getBase() = " + chronometer.getBase()/1000);
-                Log.d(TAG, "SystemClock.elapsedRealtime() - elapsedTime = " + SystemClock.elapsedRealtime()/1000 + " - " + elapsedTime/1000 + " = " + (SystemClock.elapsedRealtime()/1000 - elapsedTime/1000));
                 chronometer.setBase(SystemClock.elapsedRealtime() - elapsedTime);
-                Log.d(TAG, "after chronometer.getBase() = " + chronometer.getBase()/1000);
-
                 chronometer.start();
                 mRunning = true;
+
             } else {
-                Log.d(TAG, "---------------------stop-------------------");
-                Log.d(TAG, "SystemClock.elapsedRealtime() = " + SystemClock.elapsedRealtime()/1000);
-                Log.d(TAG, "chronometer.getBase() = " + chronometer.getBase()/1000);
                 elapsedTime = SystemClock.elapsedRealtime() - chronometer.getBase();
-                Log.d(TAG, "elapsedTime = " + elapsedTime/1000);
                 chronometer.stop();
                 mRunning = false;
             }
+
             ((MainActivity)Objects.requireNonNull(getActivity())).mvibrate(100);
 
         });
@@ -73,9 +67,34 @@ public class BottomFragment extends Fragment {
         chronometer.setOnLongClickListener(v1 -> {
             chronometer.setBase(SystemClock.elapsedRealtime());
             elapsedTime = 0;
+            clearStartData();
             return true;
+
         });
 
         return v;
+    }
+
+    private void setStartData() {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss", new Locale("ru"));
+        String formattedDate = df.format(new Date());
+        if (!mRunning && elapsedTime == 0) {
+            tvStartTime.setText(formattedDate);
+            tvStartTime.setVisibility(View.VISIBLE);
+            Log.d(TAG, "setStartData: start");
+        } else if (mRunning){
+            Log.d(TAG, "setStartData: end");
+            tvEndTime.setText(formattedDate);
+            tvEndTime.setVisibility(View.VISIBLE);
+        }
+        
+        tvCategory.setText(CategFragment.cat[(CategFragment.cur_cat)]);
+        tvCategory.setVisibility(View.VISIBLE);
+    }
+
+    private void clearStartData() {
+        tvStartTime.setVisibility(View.GONE);
+        tvEndTime.setVisibility(View.GONE);
+        tvCategory.setVisibility(View.GONE);
     }
 }

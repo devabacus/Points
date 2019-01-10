@@ -52,8 +52,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_time_end"
             />
 
-
-
         <Chronometer
             android:id="@+id/chronometer"
             android:clickable="true"
@@ -66,8 +64,5 @@
             android:layout_height="wrap_content" />
 
     </android.support.constraint.ConstraintLayout>
-
-
-
 
 </android.support.constraint.ConstraintLayout>
