@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyLongPress(keyCode, event);
     }
 
-    void mvibrate(int num) {
+    public void mvibrate(int num) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {

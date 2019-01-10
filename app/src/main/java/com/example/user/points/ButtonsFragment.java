@@ -36,7 +36,7 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
     VolButViewModel volButViewModel;
     private PointsData lastPointsData;
     RadioButton rbMinus,rbPlus;
-    public static final String TAG = "test";
+    public static final String TAG = "test_point";
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btnRes, btnSave;
     Button btnInc5,btnInc10,btnInc20,btnInc30,btnInc50,btnInc100;
     CheckBox cbEasy;
