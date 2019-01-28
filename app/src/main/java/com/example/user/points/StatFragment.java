@@ -32,7 +32,7 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StatFragment extends Fragment implements View.OnLongClickListener {
+public class StatFragment extends Fragment implements View.OnLongClickListener, View.OnClickListener {
 
     public static final String TAG = "test_point";
     PointsViewModel pointsViewModel;
@@ -41,7 +41,11 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
     public static Integer newPointValue = 0;
     Integer lastListSize = 0;
     TextView tvStat, tvTodayPoint;
-    int startTodaysPoint = 0;
+    public static int startTodaysPoint = 0;
+    public static Date startDate;
+    public static Date endDate;
+    boolean tvStatVisibility = false;
+
 
 
     enum Confirm_data{
@@ -88,8 +92,8 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stat, container, false);
 
-        Date startDate = new Date();
-        Date endDate = new Date();
+        startDate = new Date();
+        endDate = new Date();
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -108,6 +112,7 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
 
 
         btnStat = v.findViewById(R.id.btn_stat);
+        btnStat.setOnClickListener(this);
         btnStat.setOnLongClickListener(this);
         tvStat = v.findViewById(R.id.gen_points);
         tvTodayPoint = v.findViewById(R.id.tv_todays_point);
@@ -165,7 +170,21 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
 
         return v;
     }
+    //click on stat button
+    @Override
+    public void onClick(View v) {
+        if (tvStatVisibility) {
+            tvStat.setVisibility(View.GONE);
+            tvStatVisibility = false;
+        } else {
+            tvStat.setVisibility(View.VISIBLE);
+            tvStatVisibility = true;
 
+        }
+    }
+
+
+    // long click on stat button
     @Override
     public boolean onLongClick(View v) {
         create_alert_dialog(Confirm_data.DELETE_ALL);

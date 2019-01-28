@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.example.user.points.CategFragment;
 import com.example.user.points.Database.PointsData;
 import com.example.user.points.R;
+import com.example.user.points.StatFragment;
 
 import java.security.cert.PolicyNode;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -53,7 +55,12 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
 
         }
         holder.tvPoint.setText(String.valueOf(pointsData.getPointValue()));
-        holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));
+
+        if (StatFragment.startDate.getTime() < pointsData.getTimePoint().getTime()) {
+            holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues() - StatFragment.startTodaysPoint));
+        } else {
+            holder.tvCurPoints.setText(String.valueOf(pointsData.getCurValues()));
+        }
         holder.itemView.setTag(pointsData);
         holder.itemView.setOnLongClickListener(longClickListener);
     }
