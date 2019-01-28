@@ -32,8 +32,6 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsView
     @NonNull
     @Override
     public PointsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_item, parent, false);
         return new PointsViewHolder(v);
     }

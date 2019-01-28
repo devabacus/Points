@@ -8,24 +8,35 @@
 
 
     <TextView
-        android:id="@+id/gen_points"
-        style="@style/TextBig"
-        android:textSize="20sp"
-        tools:text="555"
-        android:layout_width="0dp"
-        android:layout_marginStart="5dp"
+        android:id="@+id/tv_todays_point"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="25sp"
+        tools:text="222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/gen_points"
+        android:textSize="15sp"
+        tools:text="555"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_todays_point"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <Button
         android:id="@+id/btn_stat"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/btn_stat"
         app:layout_constraintTop_toBottomOf="@id/gen_points"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 />
 
 </android.support.constraint.ConstraintLayout>

@@ -20,8 +20,11 @@ import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
 import com.example.user.points.Dialogs.ConfirmAlertDialog;
+import com.example.user.points.ListOfItems.LastItemsFragment;
 import com.example.user.points.R;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +40,8 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
     public static Integer curStatValue = 0;
     public static Integer newPointValue = 0;
     Integer lastListSize = 0;
+    TextView tvStat, tvTodayPoint;
+    int startTodaysPoint = 0;
 
 
     enum Confirm_data{
@@ -64,7 +69,11 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                 .setCancelable(true)
                 .setPositiveButton("Yes", (dialog, which) -> {
                     if (conf_data == Confirm_data.DELETE_ALL) {
-                        //pointsViewModel.deleteAll();
+                        pointsViewModel.deleteAll();
+                        curStatValue = 0;
+                        tvStat.setText("0");
+                        Toast.makeText(getContext(), "Данные удалены из базы", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .setNegativeButton("No", (dialog, which) ->{
@@ -79,12 +88,49 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stat, container, false);
 
+        Date startDate = new Date();
+        Date endDate = new Date();
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        startDate = cal.getTime();
+
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 999);
+
+        endDate = cal.getTime();
 
 
         btnStat = v.findViewById(R.id.btn_stat);
         btnStat.setOnLongClickListener(this);
-        final TextView tvStat = v.findViewById(R.id.gen_points);
+        tvStat = v.findViewById(R.id.gen_points);
+        tvTodayPoint = v.findViewById(R.id.tv_todays_point);
+
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
+
+        pointsViewModel.getPointsListByTime(startDate, endDate).observe(this, new Observer<List<PointsData>>() {
+            @Override
+            public void onChanged(@Nullable List<PointsData> pointsData) {
+                assert pointsData != null;
+
+                PointsData firstPointItem = pointsData.get(pointsData.size() - 1);
+                startTodaysPoint = firstPointItem.getCurValues() - firstPointItem.getPointValue();
+                //Toast.makeText(getContext(), String.valueOf(startTodaysPoint), Toast.LENGTH_SHORT).show();
+
+                //Log.d(TAG, "onChanged: curStatValue = " + curStatValue);
+                //Log.d(TAG, "onChanged: startTodaysPoint = " + startTodaysPoint);
+
+
+            }
+        });
+
+
         pointsViewModel.getPointsList().observe(getActivity(), pointsDataList -> {
             if(pointsDataList != null){
                 if (pointsDataList.size() > 0) {
@@ -94,7 +140,6 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                     Log.d(TAG, "pointsDataList.size() = " + pointsDataList.size());
                     Log.d(TAG, "lastListSize = " + lastListSize);
                     if (pointsDataList.size() >= lastListSize) {
-                        Log.d(TAG, "pointsDataList.size() >= lastListSize");
                        curStatValue =  pointsDataList.get(pointsDataList.size() - 1).getCurValues();
                     }
                     // if remove item from the database
@@ -103,7 +148,12 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
                        curStatValue = curStatValue - newPointValue;
                     }
                     lastListSize = pointsDataList.size();
+                    Log.d(TAG, "onChanged: curStatValue = " + curStatValue);
+                    Log.d(TAG, "onChanged: startTodaysPoint = " + startTodaysPoint);
                     tvStat.setText(String.valueOf(curStatValue));
+                    tvTodayPoint.setText(String.valueOf(curStatValue - startTodaysPoint));
+
+
                 } else {
                     ButtonsFragment.curValues = 0;
                     tvStat.setText("0");
@@ -112,7 +162,6 @@ public class StatFragment extends Fragment implements View.OnLongClickListener {
             else
                 Log.d("myLogs", "pointsDataList == null" );
         });
-
 
         return v;
     }

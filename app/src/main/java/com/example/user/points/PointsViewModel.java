@@ -10,30 +10,44 @@ import android.support.annotation.NonNull;
 import com.example.user.points.Database.AppDatabase;
 import com.example.user.points.Database.PointsData;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class PointsViewModel extends AndroidViewModel {
 
     private final LiveData<List<PointsData>> pointsList;
     private final LiveData<List<PointsData>> pointsList1;
+    //private final LiveData<List<PointsData>> pointsListByTime;
 
     private AppDatabase appDatabase;
-
 
     public PointsViewModel(@NonNull Application application) {
         super(application);
 
        // this.curValues = curValues;
+
         appDatabase = AppDatabase.getDatabase(this.getApplication());
         pointsList = appDatabase.pointsFromDao().getAllPointsItems();
         pointsList1 = appDatabase.pointsFromDao().getLastItem();
+        //pointsListByTime = appDatabase.pointsFromDao().getPointItemsByTimeInterval(new Date(System.currentTimeMillis() - (1000*60*8*24)), new Date(System.currentTimeMillis()));
+
     }
+
+
 
     LiveData<List<PointsData>> getPointsList() {
         return pointsList;
     }
+
     public LiveData<List<PointsData>> getPointsList1() {
         return pointsList1;
+    }
+
+    public LiveData<List<PointsData>> getPointsListByTime(Date timeStart, Date timeEnd) {
+        LiveData<List<PointsData>> pointsListByTime = appDatabase.pointsFromDao().getPointItemsByTimeInterval(timeStart, timeEnd);
+
+        return pointsListByTime;
     }
 
 

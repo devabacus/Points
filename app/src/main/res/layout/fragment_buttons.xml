@@ -9,6 +9,8 @@
 <android.support.constraint.ConstraintLayout
     android:id="@+id/const_table"
     android:layout_width="match_parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
     android:layout_height="wrap_content">
 
 
@@ -189,7 +191,7 @@
             android:id="@+id/btn_inc_5"
             android:text="+5"
             style="@style/TextBigBtn"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
@@ -206,8 +208,8 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btn_inc_20"
-            android:text="+20"
+            android:id="@+id/btn_inc_15"
+            android:text="+15"
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_inc_10"
@@ -215,11 +217,11 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btn_inc_30"
-            android:text="+30"
+            android:id="@+id/btn_inc_20"
+            android:text="+20"
             style="@style/TextBigBtn"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_20"
+            app:layout_constraintTop_toBottomOf="@id/btn_inc_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -227,8 +229,9 @@
             android:id="@+id/btn_inc_50"
             android:text="+50"
             style="@style/TextBigBtn"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_inc_30"
+            app:layout_constraintTop_toBottomOf="@id/btn_inc_20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

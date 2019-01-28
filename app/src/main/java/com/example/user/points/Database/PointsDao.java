@@ -7,6 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.TypeConverters;
 
+import java.util.Date;
 import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
@@ -27,8 +28,12 @@ public interface PointsDao {
     @Query("select * from PointsData where id = :id")
     PointsData getitembyId(long id);
 
+    @Query("select * from PointsData where timePoint > :timeStart and timePoint < :timeEnd " +
+            "order by id DESC")
+    LiveData<List<PointsData>> getPointItemsByTimeInterval(Date timeStart, Date timeEnd);
+
     @Query("delete from PointsData")
-    public void deleteAll();
+    void deleteAll();
 
     @Delete
     void deletePoints(PointsData pointsData);

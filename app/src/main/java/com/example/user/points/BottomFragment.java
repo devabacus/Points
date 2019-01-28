@@ -67,6 +67,7 @@ public class BottomFragment extends Fragment {
         chronometer.setOnLongClickListener(v1 -> {
             chronometer.setBase(SystemClock.elapsedRealtime());
             elapsedTime = 0;
+            chronometer.stop();
             clearStartData();
             return true;
 

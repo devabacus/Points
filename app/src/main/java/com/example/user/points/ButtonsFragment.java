@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.points.Database.PointsData;
 import com.example.user.points.FastAccess.VolButViewModel;
@@ -103,8 +102,8 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
 
         btnInc5 = v.findViewById(R.id.btn_inc_5);
         btnInc10 = v.findViewById(R.id.btn_inc_10);
-        btnInc20 = v.findViewById(R.id.btn_inc_20);
-        btnInc30 = v.findViewById(R.id.btn_inc_30);
+        btnInc20 = v.findViewById(R.id.btn_inc_15);
+        btnInc30 = v.findViewById(R.id.btn_inc_20);
         btnInc50 = v.findViewById(R.id.btn_inc_50);
         btnInc100 = v.findViewById(R.id.btn_inc_100);
 
@@ -240,12 +239,12 @@ public class ButtonsFragment extends Fragment implements View.OnClickListener {
                 mPoint = 10;
                 savePointItem();
                 break;
-            case R.id.btn_inc_20:
-                mPoint = 20;
+            case R.id.btn_inc_15:
+                mPoint = 15;
                 savePointItem();
                 break;
-            case R.id.btn_inc_30:
-                mPoint = 30;
+            case R.id.btn_inc_20:
+                mPoint = 20;
                 savePointItem();
                 break;
             case R.id.btn_inc_50:

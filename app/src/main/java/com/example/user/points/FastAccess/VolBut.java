@@ -56,7 +56,7 @@ public class VolBut extends Fragment {
                 //Log.d(TAG, "onFinish: poinValue = " + pointValue);
                 pointsViewModel.addPointsItem(new PointsData(
 
-                        new Date(), 3, 0, pointValue*10, curValues
+                        new Date(), 3, 0, pointValue, curValues
                 ));
 
                 timeIsFired = false;

@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (!longPress) {
             if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-                volButNum++;
+                volButNum+=5;
 
             } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
-                volButNum--;
+                volButNum-=5;
             }
             mvibrate(100);
 
@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             mvibrate(200);
-            volButNum+=5;
+            volButNum+=20;
             longPress = true;
             Log.d(TAG, "onKeyLongPress: up");
         }
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             mvibrate(200);
-            volButNum-=5;
+            volButNum-=20;
             longPress = true;
             Log.d(TAG, "onKeyLongPress: down");
         }

@@ -20,6 +20,8 @@ import com.example.user.points.R;
 import com.example.user.points.StatFragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +31,7 @@ public class LastItemsFragment extends Fragment implements View.OnLongClickListe
 
     private PointsViewModel pointsViewModel;
     private PointsAdapter pointsAdapter;
-
+    public static int startTodaysPoint = 0;
     public LastItemsFragment() {
         // Required empty public constructor
     }
@@ -42,11 +44,16 @@ public class LastItemsFragment extends Fragment implements View.OnLongClickListe
         pointsViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(PointsViewModel.class);
         View v = inflater.inflate(R.layout.fragment_last_item, container, false);
 
+
+
+
         final RecyclerView recyclerView = v.findViewById(R.id.rec_view);
         pointsAdapter = new PointsAdapter(new ArrayList<>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(pointsAdapter);
         pointsViewModel.getPointsList1().observe(getActivity(), pointsDataList -> pointsAdapter.addItems(pointsDataList));
+//        pointsViewModel.getPointsListByTime(new Date(System.currentTimeMillis() - (1000*60*60*24)), new Date(System.currentTimeMillis())).
+//                observe(getActivity(), pointsDataList -> pointsAdapter.addItems(pointsDataList));
         return v;
     }
 
