@@ -123,9 +123,14 @@ public class StatFragment extends Fragment implements View.OnLongClickListener, 
             @Override
             public void onChanged(@Nullable List<PointsData> pointsData) {
                 assert pointsData != null;
+                PointsData firstPointItem;
+                if (pointsData.size() > 0) {
+                    firstPointItem = pointsData.get(pointsData.size() - 1);
+                    startTodaysPoint = firstPointItem.getCurValues() - firstPointItem.getPointValue();
+                } else {
+                    startTodaysPoint = 0;
+                }
 
-                PointsData firstPointItem = pointsData.get(pointsData.size() - 1);
-                startTodaysPoint = firstPointItem.getCurValues() - firstPointItem.getPointValue();
                 //Toast.makeText(getContext(), String.valueOf(startTodaysPoint), Toast.LENGTH_SHORT).show();
 
                 //Log.d(TAG, "onChanged: curStatValue = " + curStatValue);
@@ -179,7 +184,6 @@ public class StatFragment extends Fragment implements View.OnLongClickListener, 
         } else {
             tvStat.setVisibility(View.VISIBLE);
             tvStatVisibility = true;
-
         }
     }
 
