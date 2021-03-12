@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyLongPress(keyCode, event);
     }
 
-    public void mvibrate(int num) {
+    public static void mvibrate(int num) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+            vibrator.vibrate(VibrationEffect.createOneShot(num, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             vibrator.vibrate(num);
         }
